@@ -1,9 +1,0 @@
-2024-09-27T23:59:59+08:00  MATH2560J,Honors Calculus IV  HW0  True
-2024-12-06T23:59:59+08:00  PHYS2410JFA2024 SauloMendes 王宇兴  Lab01 - magnetic structure of solids-DataSheet  False
-2024-12-06T23:59:59+08:00  PHYS2410JFA2024 SauloMendes 王宇兴  Lab02 - Hall probe DataSheet  False
-2024-12-06T23:59:59+08:00  PHYS2410JFA2024 SauloMendes 王宇兴  Lab03 - Solar cells-Datasheet  False
-2024-12-06T23:59:59+08:00  PHYS2410JFA2024 SauloMendes 王宇兴  Lab04 - Polarization of light-DataSheet  False
-2024-12-06T23:59:59+08:00  PHYS2410JFA2024 SauloMendes 王宇兴  Lab05 - RLC circuits data sheet  False
-2024-12-13T23:59:59+08:00  PHYS2410JFA2024 SauloMendes 王宇兴  Lab01 - magnetic structure of solids  False
-2024-12-13T23:59:59+08:00  PHYS2410JFA2024 SauloMendes 王宇兴  Lab02 - Hall probe  False
-2024-12-13T23:59:59+08:00  PHYS2410JFA2024 SauloMendes 王宇兴  Lab03 - Solar cells  False
