@@ -79,11 +79,16 @@ def display_sticky_note(notifications, assignments):
     screen = app.primaryScreen().size()
     window.setGeometry(screen.width() - window_width - 50, 50, window_width, window_height)
 
-    background = QtGui.QPixmap("background.png")  # 替换为你的图片路径
-    background = background.scaled(window.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)  # 确保背景图片按比例缩放
-    palette = window.palette()
-    palette.setBrush(QtGui.QPalette.Background, QtGui.QBrush(background))
-    window.setPalette(palette)
+    background = QtGui.QPixmap("background.png")
+    if background.isNull():
+        print("背景图片加载失败，使用默认白色背景")
+        window.setStyleSheet("background-color: white;")
+    else:
+        # 背景图片有效时进行缩放和设置
+        background = background.scaled(window.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
+        palette = window.palette()
+        palette.setBrush(QtGui.QPalette.Window, QtGui.QBrush(background))
+        window.setPalette(palette)
 
     # 创建一个可以滚动的区域
     scroll_area = QtWidgets.QScrollArea(window)
