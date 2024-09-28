@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 import sys
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtGui import QFont,QFontDatabase
-
+from PIL import Image
 
 def parse_announcement_file(filename):
     notifications = []
@@ -55,6 +55,7 @@ def filter_items(notifications, assignments):
 
 def display_sticky_note(notifications, assignments):
     app = QtWidgets.QApplication(sys.argv)
+
     # 可以在./Fonts目录下找到你需要的字体, 目前有mac用的SF Pro
     font_id = QFontDatabase.addApplicationFont("./Fonts/SF-Pro-Display-Semibold.otf")
     if font_id != -1:
@@ -78,11 +79,16 @@ def display_sticky_note(notifications, assignments):
     screen = app.primaryScreen().size()
     window.setGeometry(screen.width() - window_width - 50, 50, window_width, window_height)
 
+    background = QtGui.QPixmap("background.png")  # 替换为你的图片路径
+    background = background.scaled(window.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)  # 确保背景图片按比例缩放
+    palette = window.palette()
+    palette.setBrush(QtGui.QPalette.Background, QtGui.QBrush(background))
+    window.setPalette(palette)
+
     # 创建一个可以滚动的区域
     scroll_area = QtWidgets.QScrollArea(window)
     scroll_area.setWidgetResizable(True)
     # 设置窗口样式
-    window.setStyleSheet("background-color: rgba(255, 255, 255, 180); border-radius: 15px;")
 
     # 创建主widget，用于承载内容
     widget = QtWidgets.QWidget()
@@ -91,7 +97,7 @@ def display_sticky_note(notifications, assignments):
     # 设置作业标题
     assignments_label = QtWidgets.QLabel("Upcoming Assignments:")
     assignments_label.setFont(font_system)
-    assignments_label.setStyleSheet("font-weight: bold; font-size: 14px; color: black;")
+    assignments_label.setStyleSheet("background-color: rgba(255, 255, 255, 180);font-weight: bold; font-size: 14px; color: black;border-radius: 5px")
     layout.addWidget(assignments_label)
 
     # 显示每个作业
@@ -102,7 +108,7 @@ def display_sticky_note(notifications, assignments):
         # 没做完的显示红色，已经做完的显示绿色
         color = "green" if completed else "red"
         assignment_label.setFont(font_system)
-        assignment_label.setStyleSheet(f"font-size: 16px; color: {color};")
+        assignment_label.setStyleSheet(f"background-color: rgba(255, 255, 255, 180); border-radius: 5px;font-size: 16px; color: {color};")
         layout.addWidget(assignment_label)
 
     # 分隔线
@@ -113,7 +119,7 @@ def display_sticky_note(notifications, assignments):
     # 设置通知标题
     notifications_label = QtWidgets.QLabel("Recent Notifications:")
     notifications_label.setFont(font_system)
-    notifications_label.setStyleSheet("font-weight: bold; font-size: 14px; color: black;")
+    notifications_label.setStyleSheet("background-color: rgba(255, 255, 255, 180);border-radius: 5px; font-weight: bold; font-size: 14px; color: black")
     layout.addWidget(notifications_label)
 
     # 显示每个通知
@@ -122,7 +128,7 @@ def display_sticky_note(notifications, assignments):
         notification_text = f"{time_str}  {course} \n  {content}"
         notification_label = QtWidgets.QLabel(notification_text)
         notification_label.setFont(font_system)
-        notification_label.setStyleSheet("font-size: 16px; color: blue;")
+        notification_label.setStyleSheet("background-color: rgba(255, 255, 255, 180);border-radius: 5px; font-size: 16px; color: blue;")
         layout.addWidget(notification_label)
 
     # Set the content layout to the scrollable widget
