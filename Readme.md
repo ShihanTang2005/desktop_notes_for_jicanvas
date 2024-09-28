@@ -22,7 +22,7 @@ If your version is newer, download the appropriate `chromedriver` from [Chrome f
 2. A login page will open.
 
    ![Login Page](./docs/jaccount.png)
-
+Also a terminal will open too. DON'T CLOSE IT
 3. After logging in, you might see a session error.
 
    ![Session Error](./docs/jicanvas_timeout.png)
